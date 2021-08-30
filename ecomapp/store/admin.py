@@ -8,10 +8,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = [
         "name",
         "slug",
+        "id",
     ]
     prepopulated_fields = {
         "slug": ("name",),
     }
+    readonly_fields = ("id",)
 
 
 @admin.register(Product)
@@ -24,6 +26,7 @@ class ProductAdmin(admin.ModelAdmin):
         "in_stock",
         "created",
         "updated",
+        "id",
     ]
     list_filter = [
         "in_stock",
@@ -36,3 +39,4 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         "slug": ("title",),
     }
+    readonly_fields = ("id",)

@@ -13,6 +13,8 @@
      - Push path to bash_profile `echo 'export PATH="/usr/local/opt/mysql-client/bin:$PATH"' >> ~/.bash_profile`
      - Echo the Path `export PATH="/usr/local/opt/mysql-client/bin:$PATH"`
      - Install the client `pip install mysqlclient`
+   - Install Pillow (Needed for image mgmt) `pip install pillow`
+   - Install Coverage (Needed for testing) `pip install coverage`
 5. Create EcomApp directory -> `mkdir ecomapp`
 6. Push requirements to app directory -> `pip freeze > ecomapp/requirements.txt`
 
@@ -23,6 +25,7 @@ appdirs==1.4.4
 asgiref==3.4.1
 black==21.7b0
 click==8.0.1
+coverage==5.5
 Django==3.2.6
 django-environ==0.4.5
 flake8==3.9.2
@@ -187,10 +190,12 @@ exclude =
 SECRET_KEY=django-insecure-fz-79$*=!f#pu!oj2mlk2^cyp#0@)cbze_h2)xkp_r62mqoo=%
 DB_HOST=mysql
 DB_NAME=ecomapp
-DB_USER=django
-DB_PASSWORD=DjangoUserPassword
+DB_USER=root
+DB_PASSWORD=DjangoRootPassword
 PORT=3306
 ```
+
+Note: Shifted to root user since test needs access to create database
 
 16. Edit the settings.py inside core folder to use env variables
 
@@ -268,3 +273,12 @@ thumbnail = models.ImageField(upload_to=thumbnail_file_location)
 19. Import .gitignore
 20. Setup git and initial commit.
 21. Start the application `docker-compose up -d`
+
+---
+
+# Misc Commands
+
+1. Run Coverage -> `docker-compose run --rm ecomapp sh -c "coverage run --omit='*/pyenv/*' manage.py test"`
+2. Run Coverage Report -> `docker-compose run --rm ecomapp sh -c "coverage report"`
+3. Run Coverage Report in html -> `docker-compose run --rm ecomapp sh -c "coverage html"`
+   Note: Coverge is not pushed to git
