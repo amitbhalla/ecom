@@ -30,6 +30,7 @@ mccabe==0.6.1
 mypy-extensions==0.4.3
 mysqlclient==2.0.3
 pathspec==0.9.0
+Pillow==8.3.1
 pycodestyle==2.7.0
 pyflakes==2.3.1
 pytz==2021.1
@@ -245,6 +246,11 @@ urlpatterns = [
 18. In Models when refering to file locations use this code
 
 ```
+import os
+import uuid
+
+...
+
 """ Custom Function to be duplicated for each file field in a model"""
 def thumbnail_file_location(instance, filename):
     """Generate file path for a resource"""
