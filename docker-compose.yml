@@ -7,6 +7,8 @@ services:
       dockerfile: ecomapp/ecomapp.dockerfile
     volumes:
       - ./ecomapp:/ecomapp
+      - ./ecomapp/container/media:/vol/web/media
+      - ./ecomapp/container/static:/vol/web/static
     ports:
       - 8000:8000
     command: >
